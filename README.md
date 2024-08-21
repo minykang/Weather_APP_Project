@@ -1,3 +1,6 @@
+# Weather_APP_Project
+날씨 어플리케이션(추가적인 기능 포함)
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
