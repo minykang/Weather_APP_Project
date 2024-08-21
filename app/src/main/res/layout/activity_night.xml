@@ -1,0 +1,75 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/first_frame_night"
+    tools:context="com.example.weatherapp.NightActivity">
+
+    <!-- 달 아이콘 -->
+
+    <!-- 메인 온도 이미지 (밤) -->
+
+    <!-- 시간별 예보 이미지 (밤) -->
+
+    <!-- 일별 예보 이미지 (밤) -->
+
+    <ImageView
+        android:id="@+id/moon_fill"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/moon_fill_description"
+        android:src="@drawable/moon_fill"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.079" />
+
+    <ImageView
+        android:id="@+id/main_temp_icon_night"
+        android:layout_width="308dp"
+        android:layout_height="174dp"
+        android:contentDescription="@string/main_temp_description_night"
+        android:src="@drawable/main_temp_night"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <ImageView
+        android:id="@+id/hourly_forecast_night"
+        android:layout_width="413dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/hourly_forecast_description_night"
+        android:src="@drawable/time_temp_night"
+        app:layout_constraintBottom_toBottomOf="@+id/daily_forecast_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
+
+    <ImageView
+        android:id="@+id/daily_forecast_night"
+        android:layout_width="415dp"
+        android:layout_height="304dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/daily_forecast_description_night"
+        android:src="@drawable/daily_cast_night"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

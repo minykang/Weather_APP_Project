@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="location_text">서울특별시 양천구</string>
+    <string name="weather_description">어제보다 1° 낮아요</string>
+    <string name="temperature_range">최저 기온: 20° 최고 기온: 30°</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="first_frame_description">First frame background</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_temp_description">Main temperature icon</string>
+    <string name="hourly_forecast_description">Hourly weather forecast</string>
+    <string name="daily_forecast_description">Daily weather forecast</string>
+    <string name="moon_fill_description">Moon icon</string>
+    <string name="main_temp_description_night">Night temperature icon</string>
+    <string name="hourly_forecast_description_night">Night hourly forecast</string>
+    <string name="daily_forecast_description_night">Night daily forecast</string>
+
+    <string name="air_quality_icon_description">Air quality icon</string>
+    <string name="air_quality_good">좋음</string>
+    <string name="air_quality_moderate">보통</string>
+    <string name="air_quality_bad">나쁨</string>
+    <string name="clothing_recommendation">Clothing Recommendation</string>
+    <string name="food_recommendation">Food Recommendation</string>
+    <string name="playlist">Playlist</string>
+    <string name="regional_weather">Regional Weather</string>
+</resources>
