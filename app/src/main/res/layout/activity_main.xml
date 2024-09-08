@@ -4,53 +4,252 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/first_frame_day"
-    tools:context="com.example.weatherapp.MainActivity">
+    android:background="#D0E4FF"
+    tools:context=".MainActivity">
 
-    <!-- 메인 온도 이미지 -->
+    <!-- 지역 텍스트 -->
+    <TextView
+        android:id="@+id/location_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서울특별시 양천구"
+        android:textColor="#091F5B"
+        android:textSize="24sp"
+        android:fontFamily="@font/goorm_sans_bold"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- 최저/최고 기온 텍스트 뷰 추가 -->
+    <TextView
+        android:id="@+id/temperature_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최저 기온: 20° 최고 기온: 30°"
+        android:textColor="#091F5B"
+        android:textSize="22sp"
+        android:fontFamily="@font/goorm_sans_bold"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/temperature_comparison"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- 현재 온도 -->
+
+    <TextView
+        android:id="@+id/current_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/goorm_sans_bold"
+        android:text="28°"
+        android:textColor="#091F5B"
+        android:textSize="96sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/location_text_view" />
+
+    <!-- 날씨 아이콘 -->
     <ImageView
-        android:id="@+id/main_temp_icon"
-        android:layout_width="408dp"
-        android:layout_height="183dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/main_temp_description"
-        android:src="@drawable/main_temp"
+        android:id="@+id/weather_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/sunny_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.12" />
 
-
-
-    <!-- 시간별 예보 이미지 -->
-
-
-    <!-- 일별 예보 이미지 -->
-
-    <ImageView
-        android:id="@+id/hourly_forecast"
-        android:layout_width="603dp"
-        android:layout_height="216dp"
-        android:contentDescription="@string/hourly_forecast_description"
-        android:src="@drawable/time_for"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- 날씨 비교 설명 -->
+    <TextView
+        android:id="@+id/temperature_comparison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/goorm_sans_bold"
+        android:text="어제보다 1° 낮아요"
+        android:textColor="#344EAD"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintTop_toBottomOf="@id/current_temp" />
 
-    <ImageView
-        android:id="@+id/daily_forecast"
-        android:layout_width="680dp"
-        android:layout_height="338dp"
-        android:contentDescription="@string/daily_forecast_description"
-        android:src="@drawable/day_for"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- 시간별 예보 추가 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:padding="16dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.921" />
+        app:layout_constraintTop_toBottomOf="@id/temperature_range">
+
+        <LinearLayout
+            android:id="@+id/hourly_forecast_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 첫 번째 시간대 예보 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="오전 10시"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sunny_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="27°"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 두 번째 시간대 예보 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="오전 11시"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/sunny_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="27°"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 세 번째 시간대 예보 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="오후 1시"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/rain_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="27°"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 네 번째 시간대 예보 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="2시"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/cloudy_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="27°"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- 다섯 번째 시간대 예보 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="3시"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/cloudy_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="27°"
+                    android:textColor="#091F5B"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

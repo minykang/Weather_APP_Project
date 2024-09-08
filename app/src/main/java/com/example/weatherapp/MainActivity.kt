@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,37 +14,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 예시 데이터: 미세먼지 농도
-        val pm10Value = 30 // 실제 API나 센서 데이터를 통해 얻은 값
+        // 백엔드에서 받은 위치 데이터를 반영 (여기서는 예시로 "서울특별시 양천구"라고 가정)
+        val locationData = "서울특별시 양천구"
 
-        // 아이콘 및 상태를 업데이트할 뷰
-        val airQualityIcon: ImageView = findViewById(R.id.air_quality_icon)
-        val airQualityStatus: TextView = findViewById(R.id.air_quality_status)
+        // TextView에 위치 데이터를 설정
+        val locationTextView = findViewById<TextView>(R.id.location_text_view)
+        locationTextView.text = locationData
 
-        // 미세먼지 농도에 따른 상태 업데이트
-        updateAirQuality(pm10Value, airQualityIcon, airQualityStatus)
+        // 백엔드에서 날씨 데이터를 받아오는 로직을 추가하세요 (예: 날씨 API 호출)
+        // 받아온 데이터를 기반으로 시간별 및 일별 날씨 정보를 업데이트
+
+        // 예시 데이터로 시간별 날씨를 업데이트
+        updateHourlyForecast(listOf("10:00", "11:00", "12:00"), listOf("맑음", "흐림", "비"))
+
+        // 예시 데이터로 일별 날씨를 업데이트
+        updateDailyForecast(listOf("월요일", "화요일", "수요일"), listOf("맑음", "흐림", "비"))
     }
 
-    private fun updateAirQuality(pm10Value: Int, iconView: ImageView, statusView: TextView) {
-        when {
-            pm10Value <= 30 -> {
-                // 좋음 상태
-                iconView.setImageResource(R.drawable.good_icon) // `good_icon`은 좋음 상태의 아이콘
-                statusView.text = "좋음"
-                statusView.setTextColor(getColor(R.color.blue)) // 파란색 텍스트
-            }
-            pm10Value in 31..80 -> {
-                // 보통 상태
-                iconView.setImageResource(R.drawable.moderate_icon) // `moderate_icon`은 보통 상태의 아이콘
-                statusView.text = "보통"
-                statusView.setTextColor(getColor(R.color.yellow)) // 노란색 텍스트
-            }
-            pm10Value > 80 -> {
-                // 나쁨 상태
-                iconView.setImageResource(R.drawable.bad_icon) // `bad_icon`은 나쁨 상태의 아이콘
-                statusView.text = "나쁨"
-                statusView.setTextColor(getColor(R.color.red)) // 빨간색 텍스트
-            }
+    // 시간별 예보를 업데이트하는 함수
+    private fun updateHourlyForecast(times: List<String>, descriptions: List<String>) {
+        val container = findViewById<LinearLayout>(R.id.hourly_forecast_container)
+        container.removeAllViews()
+
+        for (i in times.indices) {
+            val timeTextView = TextView(this)
+            timeTextView.text = "${times[i]}: ${descriptions[i]}"
+            container.addView(timeTextView)
+        }
+    }
+
+    // 일별 예보를 업데이트하는 함수
+    private fun updateDailyForecast(days: List<String>, descriptions: List<String>) {
+        val container = findViewById<LinearLayout>(R.id.daily_forecast_container)
+        container.removeAllViews()
+
+        for (i in days.indices) {
+            val dayTextView = TextView(this)
+            dayTextView.text = "${days[i]}: ${descriptions[i]}"
+            container.addView(dayTextView)
         }
     }
 
